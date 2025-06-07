@@ -48,7 +48,7 @@ $('.modal-toggle').on('click', function() {
       $('#pdp-popup-contain').html(get_result);
     }
   });
-   setTimeout(function() { 
+   setTimeout(() => { 
   $('#pdp-popup-contain .product-form__submit.button.button--full-width.button--secondary').on('click', function() {
 $('.modal-close.modal-toggle').trigger('click');
 })
