@@ -1,0 +1,40 @@
+<div class="cstm-heading-section">
+  <div class="cstm-heading">{{ section.settings.heading }}</div>
+  <div class="cstm-line">{{ section.settings.punch-line }}</div>
+  <div class="cstm-description">{{ section.settings.description }}</div>
+</div>
+
+
+<style>
+.cstm-heading, .cstm-line, .cstm-description {
+   text-align: center;
+}
+</style>
+
+{% schema %}
+  {
+    "name": "header-text",
+    "settings": [
+      {
+        "type": "richtext",
+        "id": "heading",
+        "label": "Text-header"
+      },
+      {
+        "type": "richtext",
+        "id": "punch-line",
+        "label": "Punch-line"
+      },
+      {
+        "type": "textarea",
+        "id": "description",
+        "label": "description"
+      }
+    ],
+    "presets": [
+      {
+        "name": "custom-heading-text"
+      }
+    ]
+  }
+{% endschema %}

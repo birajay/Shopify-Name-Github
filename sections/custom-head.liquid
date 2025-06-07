@@ -1,0 +1,60 @@
+<div class="header-container">
+  {% if section.settings.header-image != blank %}
+    <div class="header-image">
+      <img src="{{ section.settings.header-image.src | img_url:'master' }}" height="70%" width="100%" />
+    </div>
+  {% endif %}
+  <div class="header-btn">
+    <a href="{{ section.settings.btn-url }}">{{ section.settings.button-name }}</a>
+  </div>
+</div>
+<style>
+  .header-container{
+    position:relative;
+    margin: 50px;
+  }
+  img{
+    border-radius: 50px;
+  }
+  .header-btn {
+    font-color:white;
+    position:absolute;
+    bottom:100px;
+    right: 80px;
+    border: 2px solid white;
+    border-radius: 10px;
+  }
+
+a{
+  color:white;
+  padding: 20px;
+}
+  
+</style>
+{% schema %}
+  {
+    "name": "header-image",
+    "settings": [
+      {
+        "type": "image_picker",
+        "id": "header-image",
+        "label": "header-image"
+      },
+      {
+        "type": "text",
+        "id": "button-name",
+        "label": "button-name"
+      },
+      {
+        "type": "url",
+        "id": "btn-url",
+        "label": "button-url"
+      }
+    ],
+    "presets": [
+      {
+        "name": "custom-header"
+      }
+    ]
+  }
+{% endschema %}

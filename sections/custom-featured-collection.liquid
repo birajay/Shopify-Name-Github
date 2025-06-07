@@ -1,0 +1,79 @@
+<div class="page-width">
+  <div class="custom-collection-pdp">
+    {% for product in section.settings.collection.products %}
+      <div class="product-inner">
+      <div class="pdp-image">
+        <img src="{{ product | img_url: 'master' }}"/>
+      </div>
+    <div class="title-pdp">{{ product.title }}</div>
+    <div class="price-pdp">{{ product.price | money_with_currency }}</div>
+    <div class="quick-btn button modal-toggle" data-product-url="{{ product.url }}">Quick Button</div>
+      </div>
+      {% endfor %}
+  </div>
+</div>
+
+  <div class="modal">
+    <div class="modal-overlay modal-toggle"></div>
+    <div class="modal-wrapper modal-transition">
+      <div class="modal-header">
+        <button class="modal-close modal-toggle"><svg class="icon-close icon" viewBox="0 0 32 32"><use xlink:href="#icon-close"></use></svg></button>
+        
+      </div>
+      
+      <div class="modal-body">
+        <div class="modal-content" id="pdp-popup-contain">
+          
+        </div>
+      </div>
+    </div>
+  </div>
+
+<script>
+  $( document ).ready(function() {
+$('.modal-toggle').on('click', function() {
+  $('.modal').toggleClass('is-visible');
+  var pdp_url = $(this).attr('data-product-url');
+  console.log(pdp_url);
+  var link_data = pdp_url;
+  $.ajax({
+    url: link_data,
+    type:'GET',
+    success:function(result){
+      var get_result = $(result).find(".main-custom-pdp");
+      $('#pdp-popup-contain').html(get_result);
+    }
+  })
+});
+
+    
+  });
+</script>
+{% schema %}
+  {
+    "name": "Collection Products",
+    "class": "cstm-coll",
+    "settings": [
+      {
+        "type": "header",
+        "info": "Add Collection",
+        "content": "Add Featured Collection"
+      },
+      {
+        "type": "text",
+        "id": "heading",
+        "label": "Heading",
+      },
+      {
+        "type": "collection",
+        "id": "collection",
+        "label": "Add Collection"
+      }
+    ],
+    "presets": [
+      {
+        "name": "Collection Products"
+      }
+    ]
+  }
+{% endschema %}

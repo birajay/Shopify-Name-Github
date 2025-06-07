@@ -1,0 +1,50 @@
+{% schema %}
+{
+  "name": "All Products",
+  "settings": [
+    {
+      "type": "number",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "default": 20
+    }
+  ],
+  "presets": [
+    {
+      "name": "All Products"
+    }
+  ]
+}
+{% endschema %}
+
+<div class="all-products-section">
+    {% assign all_products_collection = collections['all'] %}
+
+    {% if all_products_collection.products_count > 0 %}
+        {% paginate all_products_collection.products by section.settings.products_per_page %}
+            <div class="products-list">
+                {% for product in paginate.items %}
+                    <div class="product-item">
+                        <a href="{{ product.url }}">
+                            <img src="{{ product.featured_image | img_url: 'medium' }}" alt="{{ product.title }}">
+                            <h2>{{ product.title }}</h2>
+                            <p>{{ product.price | money }}</p>
+                        </a>
+                    </div>
+                {% endfor %}
+            </div>
+            
+            <!-- Pagination controls -->
+            <div class="pagination">
+                {% if paginate.previous %}
+                    <a href="{{ paginate.previous.url }}" class="prev">Previous</a>
+                {% endif %}
+                {% if paginate.next %}
+                    <a href="{{ paginate.next.url }}" class="next">Next</a>
+                {% endif %}
+            </div>
+        {% endpaginate %}
+    {% else %}
+        <p>No products found.</p>
+    {% endif %}
+</div>
