@@ -47,12 +47,15 @@ $('.modal-toggle').on('click', function() {
       var get_result = $(result).find(".main-custom-pdp");
       $('#pdp-popup-contain').html(get_result);
     }
-  })
-});
-    
-$('.pdp-popup-contain .product-form__submit.button.button--full-width.button--secondary').on('click', function() {
+  });
+   setTimeout(function() { 
+  $('.pdp-popup-contain .product-form__submit.button.button--full-width.button--secondary').on('click', function() {
 $('.modal-close.modal-toggle').trigger('click');
 })
+   },1000);
+});
+    
+
     
   });
 </script>
